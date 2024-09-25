@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+void bitStuffing(char *input, char *output) {
+    int count = 0;  
+    int j = 0;     
+    for (int i = 0; i < strlen(input); i++) {
+        output[j] = input[i];
+        j++;
+        if (input[i] == '1') {
+            count++;
+        } else {
+            count = 0;
+        }
+        if (count == 5) {
+            output[j] = '0';
+            j++;
+            count = 0;
+        }
+    }
+    output[j] = '\0';
+}
+int main() {
+    char input[MAX], output[MAX];
+    printf("Enter the data to be stuffed (e.g., 1011111100110): ");
+    scanf("%s", input);
+    bitStuffing(input, output);
+    printf("Original data: %s\n", input);
+    printf("Stuffed data:  %s\n", output);
+    return 0;
+}
